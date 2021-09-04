@@ -76,7 +76,7 @@ class NoteName(IntEnum):
     B = 12
 
     @classmethod
-    def num2note(cls, val: int, accidental: str) -> str:
+    def _num2note(cls, val: int, accidental: str) -> str:
         if accidental == "sharp":
             note_name = _MAP_SHARP[val]
         elif accidental == "flat":
@@ -91,7 +91,7 @@ class NoteName(IntEnum):
         val = (note.value + num) % 12
         if val == 0:
             val = 12
-        note_name = cls.num2note(val, accidental)
+        note_name = cls._num2note(val, accidental)
         return getattr(cls, note_name)
 
     @classmethod
