@@ -14,9 +14,13 @@ class String:
         return f"{self._note_name.name} string."
 
     def press_down(self, position: int) -> str:
-        return NoteName.add(self._note_name, position).name
+        name = NoteName.add(self._note_name, position).name
+        return self._format_name(name)
 
     @property
     def name(self) -> str:
         name = self._note_name.name
+        return self._format_name(name)
+
+    def _format_name(self, name: str) -> str:
         return name.replace("_FLAT", "♭").replace("_SHARP", "#")
