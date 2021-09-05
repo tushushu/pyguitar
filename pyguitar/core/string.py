@@ -7,14 +7,8 @@ from .note_name import NoteName
 
 
 class String:
-    def __init__(self, note_name: str) -> None:
-        try:
-            self._note_name = getattr(NoteName, note_name)
-        except AttributeError:
-            raise ValueError(
-                f"The parameter `note_name` {note_name} is " +
-                "invalid, please use 'C', 'D_FLAT', 'F_SHARP'..."
-            )
+    def __init__(self, note_name: NoteName) -> None:
+        self._note_name = note_name
 
     def __str__(self) -> str:
         return f"{self._note_name.name} string."
