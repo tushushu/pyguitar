@@ -8,6 +8,7 @@ from .note_name import NoteName
 
 class String:
     def __init__(self, note_name: NoteName, accidental: str = "sharp") -> None:
+        assert isinstance(note_name, NoteName)
         self._note_name = note_name
         self._accidental = accidental
 
