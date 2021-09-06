@@ -87,7 +87,7 @@ class NoteName(IntEnum):
         return note_name
 
     @classmethod
-    def add(cls, note: "NoteName", num: int, accidental="sharp") -> "NoteName":
+    def add(cls, note: "NoteName", num: int, accidental: str) -> "NoteName":
         val = (note.value + num) % 12
         if val == 0:
             val = 12
@@ -95,5 +95,5 @@ class NoteName(IntEnum):
         return getattr(cls, note_name)
 
     @classmethod
-    def sub(cls, note: "NoteName", num: int, accidental="sharp") -> "NoteName":
+    def sub(cls, note: "NoteName", num: int, accidental: str) -> "NoteName":
         return cls.add(note, -num, accidental)

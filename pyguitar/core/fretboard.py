@@ -20,7 +20,9 @@ class Fretboard:
         tuning = []
         for string in self._strings:
             tuning.append(string.name)
-        return f"{len(self._strings)} strings, tuning is {''.join(tuning)}"
+        return "****<Fretboard object>****\n" + \
+            f"----Number of strings -> {len(self._strings)}\n" + \
+            f"----Tuning -> {''.join(tuning)}"
 
     def press_down_string(self, string_num: int, fret_num: int) -> str:
         return self._strings[string_num - 1].press_down(fret_num)

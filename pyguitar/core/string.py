@@ -7,14 +7,15 @@ from .note_name import NoteName
 
 
 class String:
-    def __init__(self, note_name: NoteName) -> None:
+    def __init__(self, note_name: NoteName, accidental: str = "sharp") -> None:
         self._note_name = note_name
+        self._accidental = accidental
 
     def __str__(self) -> str:
         return f"{self._note_name.name} string."
 
     def press_down(self, position: int) -> str:
-        name = NoteName.add(self._note_name, position).name
+        name = NoteName.add(self._note_name, position, self._accidental).name
         return self._format_name(name)
 
     @property
