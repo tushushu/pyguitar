@@ -3,7 +3,7 @@
 @Author: tushushu
 @Date: 2021-09-06 19:52:39
 """
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(name='pyguitar',
@@ -11,5 +11,5 @@ setup(name='pyguitar',
       description='A toolkit to learn guitar.',
       author='Tushushu',
       url='https://github.com/tushushu/pyguitar',
-      packages=['pyguitar'],
+      packages=find_packages(),
       )
