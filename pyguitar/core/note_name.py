@@ -76,24 +76,31 @@ class NoteName(IntEnum):
     B = 12
 
     @classmethod
-    def _num2note(cls, val: int, accidental: str) -> str:
+    def _num2name(cls, val: int, accidental: str) -> str:
         if accidental == "sharp":
-            note_name = _MAP_SHARP[val]
+            note = _MAP_SHARP[val]
         elif accidental == "flat":
-            note_name = _MAP_FLAT[val]
+            note = _MAP_FLAT[val]
         else:
             raise ValueError("Parameter `accidental` should be either" +
                              "'sharp' or 'flat'")
-        return note_name
+        return cls.note2name(note)
 
     @classmethod
-    def add(cls, note: "NoteName", num: int, accidental: str) -> "NoteName":
+    def name2note(cls, name: str) -> str:
+        return name.replace("b", "_FLAT").replace("#", "_SHARP")
+
+    @classmethod
+    def add(cls, note: "NoteName", num: int, accidental: str) -> str:
         val = (note.value + num) % 12
         if val == 0:
             val = 12
-        note_name = cls._num2note(val, accidental)
-        return getattr(cls, note_name)
+        return cls._num2name(val, accidental)
 
     @classmethod
-    def sub(cls, note: "NoteName", num: int, accidental: str) -> "NoteName":
+    def sub(cls, note: "NoteName", num: int, accidental: str) -> str:
         return cls.add(note, -num, accidental)
+
+    @classmethod
+    def note2name(self, note: str) -> str:
+        return note.replace("_FLAT", "b").replace("_SHARP", "#")

@@ -5,12 +5,14 @@
 """
 import os
 from enum import Enum
+from time import sleep
 
 
-def speak(text: str, print_text: bool = True) -> None:
+def speak(text: str, print_text: bool = True, n_seconds: float=0.5) -> None:
     if print_text:
         print(text)
     os.system(f"say '{text}'")
+    sleep(n_seconds)
 
 
 class Color(str, Enum):
@@ -26,13 +28,14 @@ class Color(str, Enum):
     RESET = '\033[0m'
 
     @classmethod
-    def _print(cls, text: str, color: 'Color') -> None:
+    def _speak(cls, text: str, color: 'Color') -> None:
         print(color + text + cls.RESET)
+        speak(text, print_text=False)
 
     @classmethod
-    def print_red(cls, text: str) -> None:
-        cls._print(text, cls.RED)
+    def speak_red(cls, text: str) -> None:
+        cls._speak(text, cls.RED)
 
     @classmethod
-    def print_green(cls, text: str) -> None:
-        cls._print(text, cls.GREEN)
+    def speak_green(cls, text: str) -> None:
+        cls._speak(text, cls.GREEN)
