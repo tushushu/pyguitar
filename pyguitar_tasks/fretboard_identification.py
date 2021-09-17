@@ -59,7 +59,7 @@ class _FretboardIdentification(_GameLoop):
         return inputs
 
 
-if __name__ == "__main__":
+def run():
     # Initialization.
     speak("Welcome to fretboard identification!")
     speak("Initializing guitar fretboard...")

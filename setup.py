@@ -12,4 +12,7 @@ setup(name='pyguitar',
       author='Tushushu',
       url='https://github.com/tushushu/pyguitar',
       packages=find_packages(),
+      entry_points={
+          'console_scripts': ['pyguitar=pyguitar_tasks.tasks:main'],
+      },
       )
