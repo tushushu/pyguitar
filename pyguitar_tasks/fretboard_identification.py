@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     # Game.
     if not _QUIT:
-        speak("Now let's enjoy the game!")
+        speak("Now let us enjoy the game!")
     while not _QUIT:
         string_num = randint(1, 6)
         fret_num = randint(low_pos, high_pos)
