@@ -11,6 +11,7 @@ import pyguitar as pyg
 from pyguitar.utils import Color, speak
 
 _QUIT = False
+_SCORE = [0, 0]
 
 
 class _GameLoop:
@@ -110,8 +111,10 @@ if __name__ == "__main__":
         expected_sharp = fretboard.press_down_string(string_num, fret_num)
         expected_flat = fretboard.press_down_string(
             string_num, fret_num, accidental="flat")
+        _SCORE[1] += 1
         if note_name == expected_sharp or note_name == expected_flat:
             Color.speak_green("Correct!")
+            _SCORE[0] += 1
         else:
             Color.speak_red("Wrong!")
             if expected_sharp != expected_flat:
@@ -121,4 +124,6 @@ if __name__ == "__main__":
                 )
             else:
                 print(f"The correct answer should be {expected_sharp}!")
+    if _SCORE[1] != 0:
+        speak(f"Your score is {_SCORE[0]} of {_SCORE[1]}!")
     speak("Quitting the game, bye!")
