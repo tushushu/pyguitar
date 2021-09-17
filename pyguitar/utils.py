@@ -12,7 +12,7 @@ def speak(text: str, print_text: bool = True, n_seconds: float = 0.5,
           voice: str = 'Alex') -> None:
     if print_text:
         print(text)
-    os.system(f"say -v {voice} '{text}'")
+    os.system(f"say -v {voice} {text}")
     sleep(n_seconds)
 
 

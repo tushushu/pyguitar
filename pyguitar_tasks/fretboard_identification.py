@@ -88,7 +88,15 @@ if __name__ == "__main__":
         kwargs={"low_pos": low_pos},
     ).run()
 
+    if not _QUIT:
+        speak(
+            "Your guitar fretboard position range is from " +
+            f"{low_pos} to {high_pos}!"
+        )
+
     # Game.
+    if not _QUIT:
+        speak("Now let's enjoy the game!")
     while not _QUIT:
         string_num = randint(1, 6)
         fret_num = randint(low_pos, high_pos)
