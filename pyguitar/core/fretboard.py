@@ -26,6 +26,7 @@ class Fretboard:
             f"----Number of strings -> {len(self._strings)}\n" + \
             f"----Tuning -> {''.join(tuning[::-1])}"
 
-    def press_down_string(self, string_num: int, fret_num: int) -> str:
+    def press_down_string(self, string_num: int, fret_num: int,
+                          accidental: str = "sharp") -> str:
         assert 0 < string_num < len(self._strings) + 1
-        return self._strings[string_num - 1].press_down(fret_num)
+        return self._strings[string_num - 1].press_down(fret_num, accidental)
