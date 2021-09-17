@@ -32,7 +32,7 @@ class _GameLoop:
             else:
                 try:
                     return self.parse(inputs, **self.kwargs)
-                except ValueError:
+                except:  # noqa
                     speak("Invalid input.")
         return None
 
