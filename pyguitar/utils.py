@@ -8,7 +8,7 @@ from enum import Enum
 from time import sleep
 
 
-def speak(text: str, print_text: bool = True, n_seconds: float=0.5) -> None:
+def speak(text: str, print_text: bool = True, n_seconds: float = 0.5) -> None:
     if print_text:
         print(text)
     os.system(f"say '{text}'")

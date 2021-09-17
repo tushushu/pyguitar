@@ -5,7 +5,7 @@
 """
 from random import randint
 from time import sleep
-from typing import Callable, Optional
+from typing import Optional
 
 import pyguitar as pyg
 from pyguitar.utils import Color, speak
@@ -32,7 +32,7 @@ class _GameLoop:
             else:
                 try:
                     return self.parse(inputs, **self.kwargs)
-                except:
+                except ValueError:
                     speak("Invalid input.")
         return None
 
@@ -42,6 +42,7 @@ class _LowestPosition(_GameLoop):
         low_pos = int(inputs)
         assert 0 <= low_pos <= 12
         return low_pos
+
 
 class _HighestPosition(_GameLoop):
     def parse(self, inputs: str, low_pos: int) -> int:  # type: ignore
@@ -94,18 +95,22 @@ if __name__ == "__main__":
         note_name = _FretboardIdentification(
             text=f"String {string_num} and position {fret_num}: ",
         ).run()
-    
+
         if _QUIT:
             break
 
         expected_sharp = fretboard.press_down_string(string_num, fret_num)
-        expected_flat = fretboard.press_down_string(string_num, fret_num, accidental="flat")
+        expected_flat = fretboard.press_down_string(
+            string_num, fret_num, accidental="flat")
         if note_name == expected_sharp or note_name == expected_flat:
             Color.speak_green("Correct!")
         else:
             Color.speak_red("Wrong!")
             if expected_sharp != expected_flat:
-                print(f"The correct answer should be {expected_sharp} or {expected_flat}!")
+                print(
+                    f"The correct answer should be {expected_sharp} " +
+                    f"or {expected_flat}!"
+                )
             else:
                 print(f"The correct answer should be {expected_sharp}!")
     speak("Quitting the game, bye!")
