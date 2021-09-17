@@ -3,14 +3,14 @@
 @Author: tushushu
 @Date: 2021-09-06 21:08:36
 """
-from typing import List
-from typing import Optional
+import sys
 
 from pyguitar_tasks import fretboard_identification
 
 
-def main(argv: Optional[List[str]] = None) -> None:
-    if argv is not None and argv[0] == '-0':
+def main() -> None:
+    args = sys.argv[1:]
+    if args and args[0] == '-0':
         fretboard_identification.run()
     else:
         print("""
